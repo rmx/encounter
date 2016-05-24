@@ -1,0 +1,39 @@
+#!/bin/sh
+set -e
+
+./node_modules/.bin/gulp lint
+
+
+# ----------------------------------------------------------------------------
+# Run all unit tests.
+
+./node_modules/.bin/tsc --target ES6 --out tmp/test.js ./test/navmesh.ts
+./node_modules/.bin/mocha --ui exports --reporter dot --no-colors tmp/test.js
+
+
+# ----------------------------------------------------------------------------
+# Check whether all files in rmx/Pure and rmx/Storage can be compiled on their
+# own.
+
+find app/rmx/Pure -type f | while read file; do
+    echo $file
+    ./node_modules/.bin/tsc -t ES6 --out /dev/null $file
+done
+
+find app/rmx/Storage -type f | while read file; do
+    echo $file
+    ./node_modules/.bin/tsc -t ES6 --out /dev/null app/ext/avers.ts $file
+done
+
+# FIXME: rmx/Game doesn't depend on Avers anymore.
+find app/rmx/Component app/rmx/Editor app/rmx/Game app/rmx/Core app/rmx/WebGL -type f | while read file; do
+    echo $file
+    ./node_modules/.bin/tsc -t ES6 --out /dev/null app/ext/avers.ts config/local.ts $file
+done
+
+
+# ----------------------------------------------------------------------------
+# Compile the whole app.
+
+rm -rf dist/
+node ./bin/compiler `git rev-parse HEAD`

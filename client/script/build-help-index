@@ -1,0 +1,113 @@
+#!/usr/bin/env node
+
+
+function makeString(object) {
+    if (object == null) return '';
+    return '' + object;
+}
+
+function classify(str) {
+    str = makeString(str);
+    return capitalize(camelize(str.replace(/[\W_]/g, ' ')).replace(/\s/g, ''));
+}
+
+function capitalize(str) {
+    str = makeString(str);
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function decapitalize(str) {
+    str = makeString(str);
+    return str.charAt(0).toLowerCase() + str.slice(1);
+}
+
+function camelize(str, decapitalize) {
+    str = str.trim().replace(/[-_\s]+(.)?/g, function(match, c) {
+        return c ? c.toUpperCase() : "";
+    });
+
+    if (decapitalize === true) {
+        return decap(str);
+    } else {
+        return str;
+    }
+}
+
+var walk = require('walk');
+var fs = require('fs');
+var fm = require('front-matter');
+
+var helpArticles = [];
+
+walk.walkSync('./help',
+    { listeners:
+        { file:
+            function(root, fileStats, next) {
+                var file = root + '/' + fileStats.name
+                  , id   = file.replace(/^.\/help\//, '').replace(/\.md$/, '');
+
+                helpArticles.push(
+                    { id      : id
+                    , content : fm(fs.readFileSync(file, 'utf8'))
+                    }
+                );
+            }
+        }
+    }
+);
+
+function generateHelpAssets(fn) {
+    return [].concat
+        ( [ 'module rmx.assets.Help {' ]
+        , [ '' ]
+        , helpArticles.map(function(ha) {
+            var tag = decapitalize(classify(ha.id));
+            return [ '    export var ' + tag + ' ='
+                   , "        '" + fn(ha.id) + "';"
+                   , ''
+                   ].join('\n');
+          })
+        , [ '}' ]
+        , [ '' ]
+        ).join('\n');
+}
+
+function generateHelpArticles() {
+    return [].concat
+        ( [ '/// <reference path="./Types.ts" />' ]
+        , [ '' ]
+        , [ 'module rmx.Help {' ]
+        , [ '' ]
+        , [ '    export module Articles {' ]
+        , [ '' ]
+        , helpArticles.map(function(ha) {
+            var tag = decapitalize(classify(ha.id));
+            return [ '        export var ' + tag + ' ='
+                   , '            new Article'
+                   , "                ( '" + ha.id + "'"
+                   , '                , rmx.assets.Help.' + tag
+                   , '                );'
+                   , ''
+                   ].join('\n');
+          })
+        , [ '    }' ]
+        , [ '' ]
+        , [ '    export var allArticles =' ]
+        , [ '        [ ' + helpArticles.map(function(ha) {
+                var tag = decapitalize(classify(ha.id));
+                return 'Articles.' + tag
+            }).join('\n        , ') + '\n        ];'
+          ]
+        , [ '}' ]
+        , [ '' ]
+        ).join('\n');
+}
+fs.writeFile('config/base-help.ts',
+    generateHelpAssets(function(id) { return '/help/' + id + '.md'; }));
+
+fs.writeFile('config/fingerprints-help.ts',
+    generateHelpAssets(function(id) { return '<* help/' + id + '.md *>'; }));
+
+fs.writeFile('app/rmx/Help/Articles.ts',
+    generateHelpArticles());
+

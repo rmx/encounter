@@ -1,0 +1,44 @@
+#!/bin/sh
+set -e
+
+BUCKET="$1"
+if test -z "$BUCKET"; then
+    echo "Error: Need a bucket to deploy the client to."
+    exit 1
+fi
+
+
+# Build the client
+rm -rf dist/ tmp/
+node ./bin/compiler `git rev-parse HEAD`
+
+
+# Compress JavaScript files
+if test -z "$NOCOMPRESS"; then
+    cd dist
+    for file in *.js; do
+        mv $file ${file}.src
+        ../node_modules/.bin/uglifyjs --source-map ${file}.map \
+            --screw-ie8 --mangle --compress --reserved rmx --stats \
+            ${file}.src > ${file}
+    done
+    cd ..
+fi
+
+
+# mole --paths dist build tmp/release/
+mkdir -p tmp/release
+rsync -av dist/ tmp/release/
+
+# Upload all assets other than the index file.
+gsutil -m -h 'Cache-Control: public, max-age=86400' rsync -cR -x index.html  \
+    tmp/release/ gs://$BUCKET/
+
+# Now replace the index file to activate the new version.
+gsutil -m -h 'Cache-Control: no-cache, no-store, must-revalidate' cp tmp/release/index.html \
+    gs://$BUCKET/index.html
+
+# Upload the version.
+printf `git rev-parse HEAD` > tmp/release/version
+gsutil -m -h 'Cache-Control: no-cache, no-store, must-revalidate' -h 'Content-Type: text/plain' cp tmp/release/version \
+    gs://$BUCKET/version

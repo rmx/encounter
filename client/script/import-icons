@@ -1,0 +1,6 @@
+#!/bin/sh
+
+unzip -q "$1"
+mv styles.css app/styles.css
+mv fonts/* app/fonts/
+rm icons-reference.html "$1"

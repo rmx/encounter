@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+SANDBOX="${SANDBOX:-/var/cache/cabal/avers-server}"
+
+cabal update
+cabal sandbox init --sandbox="$SANDBOX"
+cabal install --only-dependencies -j --force-reinstalls
+cabal configure --prefix=/app
+cabal build
+cabal copy --destdir=$PWD/staging

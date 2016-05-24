@@ -1,0 +1,9 @@
+resolver: nightly-2015-12-17
+
+packages:
+- '.'
+- location:
+    git: https://github.com/wereHamster/libinfluxdb.git
+    commit: v0.0.3
+
+flags: {}

@@ -1,0 +1,33 @@
+
+We try to adhere to the following rules when writing JavaScript code:
+
+ - We use four spaces for each level of indentation.
+
+ - We do not rely on Automatic Semicolon Insertion (ASI), and always include
+   semicolons where appropriate.
+
+ - When declaring multiple vars, we use a single 'var' on the first line and
+   commas as contination, and align the equal signs in a single column:
+
+       var foo    = this.props.foo
+         , barBaz = this.props.bar;
+
+ - When declaring object literals, we keep the colon attached to the field
+   name, but align the right hand side in a single column, eg.
+
+       var obj =
+           { foo:     1
+           , barBaz:  2
+           };
+
+
+
+Types which are serialized to JSON and stored on the server (rmx/types/*):
+
+ - Use snakeCase for field names.
+
+ - Add 'Id' suffix to fields which contain Ids of other top-level objects
+   (soundId, iconId, ..).
+
+ - For enums, use the dasherized class name (eg. SpellDamage ->
+   "spell-damage").

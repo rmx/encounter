@@ -1,0 +1,7 @@
+*.aux
+*.un~
+*.log
+*.out
+*.bbl
+
+/encounter.pdf

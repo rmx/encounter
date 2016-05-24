@@ -1,0 +1,16 @@
+/components/
+/node_modules/
+/.vagrant/
+/.cache/
+
+/bin/compiler
+/bin/server
+
+/tmp/
+/dist/
+
+*.js.map
+visual_studio/*.user
+visual_studio/*.suo
+visual_studio/bin
+visual_studio/obj

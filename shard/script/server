@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+script/bootstrap
+
+
+node_modules/.bin/gulp compile
+echo "module.exports = '"$(git describe --match=rmx --dirty)"';" > \
+    dist/build/version.js
+
+WEBSOCKETPROXY=YesPlease node dist/build/bin/shard

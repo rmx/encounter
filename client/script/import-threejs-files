@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+fatal () { echo $1; exit 1; }
+copy () { echo "Appending `basename $1`..."; echo >> $2; cat $1 >> $2; }
+
+SRCDIR=`dirname $0`/../$1
+if ! test -d $SRCDIR; then
+    fatal "Usage: $0 <threejs root directory>"
+fi
+
+
+>assets/webgl.js
+
+copy $SRCDIR/build/three.js assets/webgl.js
+copy $SRCDIR/examples/js/math/ColorConverter.js assets/webgl.js
+
+for file in MaskPass RenderPass CopyShader EffectComposer FilmPass FilmShader ShaderPass; do
+    srcpath=`find $SRCDIR -path test/ -prune -o -name ${file}.js`
+    if ! test -f $srcpath; then
+        fatal "Could not find $file"
+    fi
+
+    copy $srcpath assets/webgl.js
+done

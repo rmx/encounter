@@ -1,0 +1,12 @@
+node_modules/
+.vagrant/
+
+/data/
+/docs/
+
+/bin/shell
+/bin/shard
+
+/test/main.js
+/version.js
+/dist/

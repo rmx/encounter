@@ -1,0 +1,34 @@
+{
+  "name": "client",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "devDependencies": {
+    "async": "*",
+    "component": "*",
+    "connect": "3.x",
+    "front-matter": "*",
+    "markdown": "*",
+    "mime": "*",
+    "mkdirp": "*",
+    "mocha": "*",
+    "morgan": "*",
+    "react-tools": "0.12.*",
+    "serve-static": "*",
+    "tslint": "2.1.*",
+    "typescript": "1.4.1",
+    "uglify-js": "2.4.16",
+    "gulp": "*",
+    "gulp-typescript": "*",
+    "gulp-concat": "*",
+    "gulp-tslint": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-react": "*",
+    "walk": "*"
+  },
+  "license": "BSD-2-Clause"
+}

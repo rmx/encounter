@@ -1,0 +1,6 @@
+#!/bin/sh
+
+npm install -s
+
+./node_modules/.bin/tsc --out bin/server bin/server.ts
+./node_modules/.bin/tsc --out bin/compiler bin/compiler.ts

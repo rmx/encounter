@@ -1,0 +1,33 @@
+{
+  "private": true,
+
+  "name": "encounter",
+  "version": "0.0.1",
+
+  "engines": {
+    "node": "4.x"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wereHamster/encounter-shard.git"
+  },
+
+  "dependencies": {
+    "coffee-script":      "*",
+    "express":            "*",
+    "gl-matrix":          "*",
+    "gulp":               "*",
+    "gulp-babel":         "*",
+    "gulp-tslint":        "*",
+    "gulp-typescript":    "*",
+    "influx":             "*",
+    "mocha":              "*",
+    "request":            "*",
+    "stack-trace":        "*",
+    "tslint":             "*",
+    "typescript":         "1.6.x",
+    "underscore":         "*",
+    "websocket":          "*"
+  }
+}

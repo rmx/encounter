@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.box     = "raring-server-cloudimg-vagrant-amd64-disk1"
+  config.vm.box_url = "http://cloud-images.ubuntu.com/raring/current/raring-server-cloudimg-vagrant-amd64-disk1.box"
+
+  config.vm.network :forwarded_port, guest: 3000, host: 3001
+  config.vm.network :private_network, ip: "192.168.30.3"
+  
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    vb.customize ["modifyvm", :id, "--memory", 2048]
+  end
+
+  config.vm.provision :shell, inline: <<-SCRIPT
+    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys B9316A7BC7917B12
+    echo "deb http://ppa.launchpad.net/chris-lea/node.js/ubuntu precise main" \
+      >/etc/apt/sources.list.d/nodejs.list
+
+    apt-get -y update
+    apt-get -y install nodejs git
+  SCRIPT
+
+end

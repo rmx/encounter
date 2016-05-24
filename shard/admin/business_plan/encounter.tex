@@ -1,0 +1,302 @@
+\documentclass[10pt]{scrartcl}
+
+\usepackage{microtype}
+\usepackage{xspace}
+\usepackage[compress]{cite}
+
+\usepackage{fixltx2e}
+\usepackage{url}
+\usepackage{varioref}
+\usepackage{booktabs}
+\usepackage{enumitem} % setting sizes of list-environments globally
+
+\usepackage[pdfborder=0 0 0, colorlinks=true]{hyperref}
+
+\begin{document}
+
+
+\newcommand{\FIX}[1]{}
+\newcommand{\FIXN}[2]{}
+\newcommand{\yves}[1]{\FIXN{YI}{#1}}
+\newcommand{\simon}[1]{\FIXN{SM}{#1}}
+\newcommand{\tomc}[1]{\FIXN{TC}{#1}}
+\newcommand{\crobi}[1]{\FIXN{RC}{#1}}
+%%% Fixes: disable for final version by commenting out the below
+\renewcommand{\FIX}[1]{\footnote{#1}}
+\renewcommand{\FIXN}[2]{\FIX{{\bf #1:} #2}}
+
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\st}{s.t.\xspace}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\etc}{etc.\xspace}
+\newcommand{\wrt}{w.r.t.\xspace}
+%\newcommand{\wlog}{w.l.o.g.\xspace}
+\newcommand{\etal}{et.~al.\xspace}
+
+\title{
+  Encounter -- The Game
+}
+
+\author{
+  Robert Carnecky,
+  Tomas Carnecky,\\
+  Yves Ineichen,
+  Simon Meier,\\
+  e-mail: \{crobi, tomc, meiersi, iff\}@encounter.io
+}
+
+\date{\today}
+\maketitle
+
+
+\begin{abstract}
+This document describes both the game idea
+  and the business plan to make this game happen.
+\end{abstract}
+
+%-----------------------------------------------------------------------------
+\section{Introduction}
+
+\subsection{Overview}
+
+
+
+%-----------------------------------------------------------------------------
+\section{Background}
+
+\subsection{The RTYS Studio}
+
+About us.
+Describe who we are and why do what we do.
+Perhaps we could even define the values that we base our decisions on;
+  \eg, from players for players.
+
+
+
+We are computer scientists and programers who met during our studies.
+We share a common passion for games. Every now and then we like a good story,
+    but what we strive for is games which challenge us.
+
+
+
+\subsection{World Of Warcraft\texttrademark}
+
+On the day of its release, we all bought the game World of Warcraft.
+Having to level up your character is mostly a boring, repetitive task.
+But we all soon reached level 60 and started doing raids as part of one of
+    most successful guilds on the server.
+We've spend much of the playtime in Molten Core, Blackwing Lair and Naxxramas.
+What was driving us to invest countless hours into the game was the challenge
+    to defeat the high-end bosses.
+The fact that you don't know what they do, how they behave and what you have
+    to do as a group of 40 people to win the fight was just daring us to try
+    again and again.
+
+
+\subsection{Little Big Planet\texttrademark}
+
+Little Big Planet is a 2008 puzzle game for the PlayStation 3. A big part of
+    the game is the ability to generate your own content.
+While playing the regular game, you can collect building blocks which you can
+    then use in your own levels.
+While levels created by users usually don't match the quality of the those
+    included in the game, some are really good.
+This shows that users are very well capable of generating good content.
+
+
+\subsection{Bouldering}
+
+Two of the four funders of the RTYS Studio are avid boulderers.
+Bouldering is a style of climbing which focuses on short routes, commonly
+    referred to as problems.
+These are short sequences of moves, usually chosen difficult enough so that
+    climber has to try a few times.
+There usually are different ways how to solve the problem, depending on the
+    climbers height, weight, strength, skill etc.
+Once the climber has solved a problem, it becomes uninteresting, and he moves
+    on to the next problem.
+
+
+%-----------------------------------------------------------------------------
+\section{Game Idea}
+
+The platform is built around the idea of `encounters`. These are short games,
+    no more than 10 minutes. The goal is to defeat an enemy, whose tactic and
+    behavior is unknown to the players at first.
+The players first must figure out, just like in bouldering, what the best way
+    is to win the encounter.
+
+We've taken from World of Warcraft only the interesting parts - the boss
+    fights - and removed the boring leveling and farming.
+The name `encounter` also comes from World of Warcraft, where this term is
+    used to refer to boss fights in high-end instances.
+
+These boss fights rarely last longer than 10 minutes. Players are expected
+    to lose the first few times. During these tries they will learn the game
+    mechanics. Once they know how the encounter works, they can hopefully win
+    the fight.
+
+The second big part of encounter - the game is the ability for players to
+    create their own encounters.
+While writing the game engine, we've always paid attention to make it easily
+    configurable and extendable by users. Almost every aspect of the game
+    can be controlled or scripted.
+
+To make it easy for players to design their own encounters, we provide an
+    online editor so they can do play and design using the same application.
+
+After winning an encounter, the users gain access to all components that are
+    used in that encounter. These are the components that they can use when
+    designing their own encounters. This encourages users to play different
+    encounters to collect as many different components as possible.
+
+
+
+\begin{itemize}
+  \item
+    Describe the fascination of playing these hard encounters.
+
+  \item
+    Describe the platform idea
+\end{itemize}
+
+%-----------------------------------------------------------------------------
+\section{Business Model}
+
+%.............................................................................
+\subsection{Goals}
+The goal of encounter - the game is to generate enough revenue to pay for
+three full-time positions (360k USD per year, or 30k USD per month).
+
+%.............................................................................
+\subsection{Overview}
+
+We charge per game played, using our own virtual in-game currency (EC
+- Encounter Coins). Users get a small amount of this currency each month. This
+will be enough to play a few games. If they want to play more, they can
+exchange real-world money for our currency.
+
+Users can also earn money by contributing content to the project. This can be
+in form of models, scripts or even whole encounters. Users will get a share
+when other users play encounters which use their contributions. This will
+create an economy which encourages users to contribute.
+
+
+%.............................................................................
+\subsection{Economy}
+
+Each month we have to drain an equivalent of 30k USD from the economy (to pay
+our expenses). We do this by taking a share of each transaction that is used
+to pay for games.
+
+There are three types of coins: Silver, Gold, Platinum. This distinction is
+made so we can better calculate the amount of cash we need in our bank in case
+designers can withdraw money.
+
+\begin{itemize}
+
+  \item \textbf{Silver}: A small amount given to players for free. These coins
+      are used to limit how much non-paying players can play.
+
+  \item \textbf{Gold}: Players can buy these for money and use to play
+      encounters. Not possible to convert back to \$\$\$.
+
+  \item \textbf{Platinum}: Designers earn these when players spend gold to
+      play their encounters. For each gold spent, the designer gets a share.
+      Designer can withdraw these as real-world money, or convert into Gold
+      coins.
+
+\end{itemize}
+
+Example: Costs to play a game: 100EC. We take 30\% (30EC), leaving 70EC to the
+designer. His share is further decreased by the contributions to users whose
+components he used to create the encounter. This means users must play games
+for an equivalent of 90k USD each month.
+
+At 1\$ per game (seems really expensive btw!) it means 90k games each month,
+3k games per day, 125 games per hour, 2 games per minute (assuming even
+distribution).
+
+%.............................................................................
+\subsection{Bootstrapping}
+
+We intend to bootstrap the project using our own money and donations from
+first-adopters. Users who contribute significant amounts of money receive
+life-time advantages (such as special status, free account etc). Once the
+parts that are required to create a stable economy are ready (online editor,
+currency exchange etc), we'll transition to a subscription based model.
+
+During this initial phase our expenses will be about 10k USD/month. We can
+reach an estimated 200k people through gaming related blogs, forums etc. Our
+goal is to get at least 10k unique visitors during the first month. This
+translates to about 5\% of the people we can reach.
+
+If 5\% of those users (=500) donates anverage of 5\$ each month, we can cover
+about 25\% of our expenses. If each of those donates 20\$, then we're break
+even.
+
+Number of users we can reach (format this somehow?):
+
+    reddit gaming related subgroups: Gamer News: 46k+, Web Games: 42k+, Indie Gaming: 21k+ (source: http://www.reddit.com/r/gaming/faq\#non-specific)
+    hacker news: 120k+ (source: http://www.quora.com/Hacker-News/How-many-users-does-Hacker-News-have)
+
+%.............................................................................
+\subsection{Subscriptions}
+
+Subscriptions increase the influx of money that flows into the in-game
+economy.  What do we do with the exess money? Do we allow users to withdraw
+it?
+
+
+%-----------------------------------------------------------------------------
+\section{Implementation}
+
+The platform consists of the website, an online editor and a game client on
+    the frontent, and a web server, game server and a database on the backend.
+
+The online editer and the game client are both written in HTML/JavaScript.
+They rely on modern technologies, such as WebGL and WebSockets. Only very
+    recent versions of Web Browsers support those.
+
+This limits the number of users who can play the game. However, the
+    technologies we rely on are being standartized and all major Web Browser
+    vendors are working on implementing those.
+
+Both the web and game servers are written on JavaScript and run under Node.js.
+    One advantage of using the same language on the frontend and backend is
+    that code can be shared.
+
+All data is stored in a single database. This reduces the number of components
+    that the system requires at runtime, and eases development.
+We've chosen MongoDB due to its document-oriented nature and lack of fixed
+    schema. This proved extremely useful during development as the structure
+    of our data changed frequently.
+
+The web and game servers are mostly independent. Scaling both just means
+    starting more servers.
+They only converge at the database. At some point the database will become the
+    bottleneck.
+
+The required resources can be calculated in terms of CPU, memory, bandwidth
+    and storage required per player when playing a game, and storage required
+    to store the configuration of a single encounter (scripts, models,
+    textures, terrains etc).
+
+If each encounter uses its own, distinct set of scripts, models, textures,
+    terrains etc. then most of the storage requirements can be attributed to
+    the textures and models.
+These costs can be mitigated by sharing these resources between encounters.
+
+Our tests have shown that one Intel(R) Core(TM) i7-3930K CPU @ 3.20GHz CPU can
+    handle up to 100 simultaneous games. The memory requirements are about 5MB
+    per player.
+(footnote: encounter complexity is expected to increase, but so are the
+    optimizations of the game engine, so the two will cancel each other out)
+
+
+%-----------------------------------------------------------------------------
+\section{Conclusions}
+
+Some conclusions that we want the reader of this document to digest.
+
+\end{document}

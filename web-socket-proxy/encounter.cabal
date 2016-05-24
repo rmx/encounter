@@ -1,0 +1,38 @@
+name:                encounter
+version:             0.1.0.0
+license-file:        UNLICENSE
+build-type:          Simple
+cabal-version:       >= 1.8
+
+
+executable web-socket-proxy
+    hs-source-dirs:      src
+
+    main-is:             WebSocketProxy.hs
+
+    build-depends:       aeson
+    build-depends:       base
+    build-depends:       bson
+    build-depends:       bytestring
+    build-depends:       conduit
+    build-depends:       connection
+    build-depends:       containers
+    build-depends:       http-conduit
+    build-depends:       http-client
+    build-depends:       http-client-tls
+    build-depends:       http-types
+    build-depends:       influxdb
+    build-depends:       mtl
+    build-depends:       network-uri
+    build-depends:       old-locale
+    build-depends:       safe
+    build-depends:       snap-core
+    build-depends:       snap-server
+    build-depends:       stm
+    build-depends:       text
+    build-depends:       time
+    build-depends:       transformers
+    build-depends:       websockets
+    build-depends:       websockets-snap
+
+    ghc-options:         -Wall -O2
